@@ -1,8 +1,9 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
+import classnames from 'classnames';
 import styles from './layout.module.scss';
-import utilStyles from '../styles/utils.module.scss';
+import utilStyles from '../../styles/utils.module.scss';
 
 export const SITE_TITLE = 'Next.js Sample Website';
 const NAME = 'nokazn';
@@ -18,30 +19,30 @@ const profileOrLink = (home, name) => {
       <Image
         priority
         src='/images/profile.jpg'
-        className={utilStyles.borderCircle}
+        className={classnames(utilStyles.borderCircle)}
         height={144}
         width={144}
         alt={name}
       />
-      <h1 className={utilStyles.heading2X1}>{name}</h1>
+      <h1 className={classnames(utilStyles.heading2X1)}>{name}</h1>
     </>
   ) : (
     <>
       <Link href='/'>
         <a>
           <Image
-            property
+            priority
             src='/images/profile.jpg'
-            className={utilStyles.borderCircle}
+            className={classnames(utilStyles.borderCircle)}
             height={108}
             width={108}
             alt={name}
           />
         </a>
       </Link>
-      <h2 className={utilStyles.headingLg}>
+      <h2 className={classnames(utilStyles.headingLg)}>
         <Link href='/'>
-          <a className={utilStyles.colorInherit}>{name}</a>
+          <a className={classnames(utilStyles.colorInherit)}>{name}</a>
         </Link>
       </h2>
     </>
@@ -50,7 +51,7 @@ const profileOrLink = (home, name) => {
 
 export default function Layout({ children, home }) {
   return (
-    <div className={styles.container}>
+    <div className={classnames(styles.container)}>
       <Head>
         <link rel='icon' href='/favicon.ico' />
         <meta name='description' content='Learn how to build a personal website using Next.js' />
@@ -58,10 +59,10 @@ export default function Layout({ children, home }) {
         <meta name='og:title' content={SITE_TITLE} />
         <meta name='twitter:card' content='summary_large_image' />
       </Head>
-      <header className={styles.header}>{profileOrLink(home, NAME)}</header>
+      <header className={classnames(styles.header)}>{profileOrLink(home, NAME)}</header>
       <main>{children}</main>
       {!home && (
-        <div className={styles.backToHome}>
+        <div className={classnames(styles.backToHome)}>
           <Link href='/'>
             <a>← Back to home</a>
           </Link>

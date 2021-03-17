@@ -16,7 +16,6 @@ export const getStaticProps = async () => {
 };
 
 export default function Home({ allPostsData }) {
-  console.log(allPostsData);
   return (
     <Layout home>
       <Head>
@@ -39,7 +38,7 @@ export default function Home({ allPostsData }) {
       {allPostsData != null && allPostsData.length > 0 && (
         <section className={classnames(utilStyles.headingMd, utilStyles.padding1px)}>
           <h2 className={classnames(utilStyles.headingLg)}>Blog</h2>
-          <ul className={utilStyles.list}>
+          <ul className={classnames(utilStyles.list)}>
             {allPostsData.map(({ id, title, date }) => (
               <li className={classnames(utilStyles.listItem)} key={id}>
                 <Link href={`/posts/${id}`}>

@@ -4,6 +4,11 @@ import matter from 'gray-matter';
 import remark from 'remark';
 import html from 'remark-html';
 
+interface MatterData {
+  date: string;
+  title: string;
+}
+
 const postsDirectory = path.join(process.cwd(), 'posts');
 
 export const getSortedPostData = () => {
@@ -14,7 +19,7 @@ export const getSortedPostData = () => {
     const matterResult = matter(fileContents);
     return {
       id,
-      ...matterResult.data,
+      ...matterResult.data as MatterData,
     };
   });
   return allPostData.sort((a, b) => {
