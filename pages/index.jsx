@@ -1,6 +1,8 @@
 import Head from 'next/head';
+import Link from 'next/link';
 import classnames from 'classnames';
 import Layout, { SITE_TITLE } from '../components/layout';
+import Date from '../components/date';
 import { getSortedPostData } from '../lib/posts';
 import utilStyles from '../styles/utils.module.scss';
 
@@ -34,18 +36,19 @@ export default function Home({ allPostsData }) {
         </p>
       </section>
 
-      {allPostsData && (
+      {allPostsData != null && allPostsData.length > 0 && (
         <section className={classnames(utilStyles.headingMd, utilStyles.padding1px)}>
           <h2 className={classnames(utilStyles.headingLg)}>Blog</h2>
           <ul className={utilStyles.list}>
-            {allPostsData.map(({ id, data }) => (
+            {allPostsData.map(({ id, title, date }) => (
               <li className={classnames(utilStyles.listItem)} key={id}>
-                {data.title}
+                <Link href={`/posts/${id}`}>
+                  <a>{title}</a>
+                </Link>
                 <br />
-                {id}
-                <br />
-                {data.date}
-                <br />
+                <small className={classnames(utilStyles.lightText)}>
+                  <Date>{date}</Date>
+                </small>
               </li>
             ))}
           </ul>
