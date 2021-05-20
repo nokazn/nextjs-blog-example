@@ -1,6 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { env } = require("./next.config");
-
 module.exports = {
-  siteUrl: env.SITE_URL,
+  siteUrl: process.env.SITE_URL,
+  // siteUrl: 'https://gaming.persimmons.io',
 };
