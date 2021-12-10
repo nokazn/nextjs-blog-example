@@ -9,7 +9,7 @@ export const getStaticPaths = async () => {
   const paths = getAllPostIds();
   return {
     paths,
-    fallback: true,
+    fallback: 'blocking',
   };
 };
 
@@ -19,6 +19,7 @@ export const getStaticProps = async ({ params }) => {
     props: {
       postData,
     },
+    revalidate: 10,
   };
 };
 
